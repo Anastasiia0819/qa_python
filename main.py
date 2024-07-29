@@ -1,17 +1,17 @@
 class BooksCollector:
 
     def __init__(self):
-        self.books_genre = {}
-        self.favorites = []
-        self.genre = ['Фантастика', 'Ужасы', 'Детективы', 'Мультфильмы', 'Комедии']
-        self.genre_age_rating = ['Ужасы', 'Детективы']
+        self.books_genre = {} #куда можно добавить пару Название книги: Жанр книги.
+        self.favorites = [] # содержит избранные книги
+        self.genre = ['Фантастика', 'Ужасы', 'Детективы', 'Мультфильмы', 'Комедии'] #содержит доступные жанры
+        self.genre_age_rating = ['Ужасы', 'Детективы'] #содержит жанры с возрастным рейтингом
 
-    # добавляем новую книгу
+    # добавляем новую книгу без указания жанра. (максимум 40 символов. Одну и ту же книгу можно добавить только один раз)
     def add_new_book(self, name):
         if not self.books_genre.get(name) and 0 < len(name) < 41:
             self.books_genre[name] = ''
 
-    # устанавливаем книге жанр
+    # устанавливаем книге жанр (если книга есть в books_genre и её жанр входит в список genre)
     def set_book_genre(self, name, genre):
         if name in self.books_genre and genre in self.genre:
             self.books_genre[name] = genre
@@ -33,7 +33,7 @@ class BooksCollector:
     def get_books_genre(self):
         return self.books_genre
 
-    # возвращаем книги, подходящие детям
+    # возвращаем книги, подходящие детям ( У жанра книги не должно быть возрастного рейтинга)
     def get_books_for_children(self):
         books_for_children = []
         for name, genre in self.books_genre.items():
@@ -41,13 +41,13 @@ class BooksCollector:
                 books_for_children.append(name)
         return books_for_children
 
-    # добавляем книгу в Избранное
+    # добавляем книгу в Избранное (Книга должна находиться в словаре books_genre. Повторно добавить книгу в избранное нельзя.)
     def add_book_in_favorites(self, name):
         if name in self.books_genre:
             if name not in self.favorites:
                 self.favorites.append(name)
 
-    # удаляем книгу из Избранного
+    # удаляем книгу из Избранного (если она там есть)
     def delete_book_from_favorites(self, name):
         if name in self.favorites:
             self.favorites.remove(name)
