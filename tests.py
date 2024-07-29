@@ -71,7 +71,7 @@ class TestBooksCollector:
         collector.set_book_genre("Маленький принц", 'Мультфильмы')
         collector.add_new_book("Талантливый мистер Рипли")
         collector.set_book_genre("Талантливый мистер Рипли", "Детективы")
-        assert len(collector.get_books_for_children()) == 1 and collector.get_books_for_children() == ["Маленький принц"]
+        assert len(collector.get_books_for_children()) == 1 and "Маленький принц" in collector.get_books_for_children()
 
     #7. Добавить книгу в избранное, проверить что книга добавилась в избранное
     def test_add_book_in_favorites_book_added(self):
@@ -95,6 +95,7 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.add_new_book("Убийство на улице Морг")
         collector.add_book_in_favorites("Убийство на улице Морг")
-        assert len(collector.get_list_of_favorites_books()) == 1 and collector.get_list_of_favorites_books() == ["Убийство на улице Морг"]
+        assert len(collector.get_list_of_favorites_books()) == 1 and "Убийство на улице Морг" in collector.get_list_of_favorites_books()
+
 
 
